@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ActHelp"></activity>
+        <activity android:name=".ActEnd"></activity>
+        <activity android:name=".ActHelp" />
         <activity android:name=".ActPlay" />
         <activity android:name=".ActStart">
             <intent-filter>

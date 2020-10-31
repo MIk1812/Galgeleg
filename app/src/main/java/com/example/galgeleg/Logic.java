@@ -66,14 +66,17 @@ public class Logic {
         return spilletErTabt || spilletErVundet;
     }
 
-
     public void startNytSpil() {
         brugteBogstaver.clear();
         antalForkerteBogstaver = 0;
         spilletErVundet = false;
         spilletErTabt = false;
         if (muligeOrd.isEmpty()) throw new IllegalStateException("Listen over mulige ord er tom!");
-        ordet = muligeOrd.get(new Random().nextInt(muligeOrd.size()));
+
+        //todo sæt tilbage
+//        ordet = muligeOrd.get(new Random().nextInt(muligeOrd.size()));
+        ordet = "a";
+
         System.out.println("Nyt spil - det skjulte ord er: "+ordet);
         opdaterSynligtOrd();
     }

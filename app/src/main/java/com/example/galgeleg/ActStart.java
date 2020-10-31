@@ -23,9 +23,6 @@ public class ActStart extends AppCompatActivity implements View.OnClickListener 
         bPlay.setOnClickListener(this);
         bHelp.setOnClickListener(this);
 
-
-
-
     }
 
     @Override
