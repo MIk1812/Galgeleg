@@ -121,6 +121,7 @@ public class ActPlay extends AppCompatActivity implements View.OnClickListener {
         if(logic.erSpilletSlut()){
             Intent i = new Intent(this, ActEnd.class);
             startActivity(i);
+            this.finish();
         } else
             updateImage();
     }
