@@ -5,15 +5,16 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:allowBackup="true"
         android:name=".MyApp"
+        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".ActEnd"></activity>
+        <activity android:name=".ActHighScores"></activity>
+        <activity android:name=".ActSave" />
+        <activity android:name=".ActEnd" />
         <activity android:name=".ActHelp" />
         <activity android:name=".ActPlay" />
         <activity android:name=".ActStart">

@@ -12,6 +12,7 @@ import java.util.Random;
 public class Logic {
 
     private static Logic instance = new Logic();
+    public static final String HIGHSCORES = "highscores.txt";
 
     /** AHT afprøvning er muligeOrd synlig på pakkeniveau */
     ArrayList<String> muligeOrd = new ArrayList<String>();
@@ -78,7 +79,11 @@ public class Logic {
         spilletErVundet = false;
         spilletErTabt = false;
         if (muligeOrd.isEmpty()) throw new IllegalStateException("Listen over mulige ord er tom!");
-        ordet = muligeOrd.get(new Random().nextInt(muligeOrd.size()));
+
+        ordet = "ab";
+//        ordet = muligeOrd.get(new Random().nextInt(muligeOrd.size()));
+
+
         System.out.println("Nyt spil - det skjulte ord er: "+ordet);
         opdaterSynligtOrd();
     }

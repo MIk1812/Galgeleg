@@ -6,11 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 public class ActStart extends AppCompatActivity implements View.OnClickListener {
 
-    Button bPlay, bHelp;
+    Button bPlay, bHighScores, bHelp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,9 +18,11 @@ public class ActStart extends AppCompatActivity implements View.OnClickListener 
         setContentView(R.layout.act_start);
 
         bPlay = (Button) findViewById(R.id.button1);
-        bHelp = (Button) findViewById(R.id.button2);
+        bHighScores = (Button) findViewById(R.id.button2);
+        bHelp = (Button) findViewById(R.id.button3);
 
         bPlay.setOnClickListener(this);
+        bHighScores.setOnClickListener(this);
         bHelp.setOnClickListener(this);
 
     }
@@ -47,11 +48,14 @@ public class ActStart extends AppCompatActivity implements View.OnClickListener 
             startActivity(i);
         }
 
+        if(v == bHighScores){
+            i = new Intent(this, ActHighScores.class);
+            startActivity(i);
+        }
+
         if(v == bHelp){
             i = new Intent(this, ActHelp.class);
             startActivity(i);
         }
-
-
     }
 }

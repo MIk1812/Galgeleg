@@ -10,7 +10,8 @@ import android.widget.TextView;
 
 public class ActEnd extends AppCompatActivity implements View.OnClickListener {
 
-    Button b;
+    Button b, save;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +19,9 @@ public class ActEnd extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.act_end);
 
         b = findViewById(R.id.button);
+        save = findViewById(R.id.save);
         b.setOnClickListener(this);
+        save.setOnClickListener(this);
 
     }
 
@@ -32,20 +35,35 @@ public class ActEnd extends AppCompatActivity implements View.OnClickListener {
 
         Logic logic = Logic.getInstance();
 
-        if(logic.erSpilletTabt())
+        if(logic.erSpilletTabt()){
             title.setText("Desværre, du tabte");
+            Button save = findViewById(R.id.save);
+            save.setVisibility(View.GONE);
+        }
+
 
         int numberOfGuesses = logic.getBrugteBogstaver().size();
         subtitle.setText("Du brugte " + String.valueOf(numberOfGuesses) + " gæt");
 
         String wordToGuess = logic.getOrdet();
         word.setText(wordToGuess);
-
     }
 
     @Override
     public void onClick(View v) {
-        Intent i = new Intent(this, ActStart.class);
-        startActivity(i);
+
+        if(v == b){
+            Intent i = new Intent(this, ActStart.class);
+            startActivity(i);
+            this.finish();
+        }
+
+        if(v == save){
+            Intent i = new Intent(this, ActSave.class);
+            startActivity(i);
+            this.finish();
+        }
+
+
     }
 }
