@@ -3,15 +3,18 @@ package com.example.galgeleg;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ActPlay extends AppCompatActivity implements View.OnClickListener {
 
     Button a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,ae,oe,aa;
     String alphabet[] = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","ae","oe","aa"};
+    int images[] = {R.drawable.galge, R.drawable.forkert1, R.drawable.forkert2, R.drawable.forkert3, R.drawable.forkert4, R.drawable.forkert5, R.drawable.forkert6};
     Button buttons[];
     Logic logic = new Logic();
 
@@ -21,9 +24,6 @@ public class ActPlay extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.act_play);
 
         updateVisibleWord();
-
-        //todo slet
-        System.out.println(logic.getOrdet());
 
         a = findViewById(R.id.a);
         b = findViewById(R.id.b);
@@ -95,22 +95,35 @@ public class ActPlay extends AppCompatActivity implements View.OnClickListener {
         for(int w = 0; w < buttons.length; w++) {
             if(v == buttons[w]) {
                 logic.gætBogstav(alphabet[w]);
+                updateButton(buttons[w]);
+                updateVisibleWord();
                 break;
             }
         }
 
-       updateVisibleWord();
-
         if(logic.erSpilletSlut()){
             Intent i = new Intent(this, ActEnd.class);
             startActivity(i);
-        }
-
+        } else
+            updateImage();
     }
 
     private void updateVisibleWord(){
         TextView visibleWord = findViewById(R.id.visibleWord);
         visibleWord.setText(logic.getSynligtOrd());
+    }
+
+    private void updateButton(Button b){
+        if(logic.erSidsteBogstavKorrekt())
+            b.setBackgroundColor(Color.parseColor("#47c236"));
+        else
+            b.setBackgroundColor(Color.parseColor("#db413b"));
+    }
+
+    private void updateImage(){
+        int failedGuesses = logic.getAntalForkerteBogstaver();
+        ImageView image = (ImageView) findViewById(R.id.imageView);
+        image.setImageResource(images[failedGuesses]);
     }
 
 }

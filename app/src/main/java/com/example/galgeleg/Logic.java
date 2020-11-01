@@ -75,7 +75,7 @@ public class Logic {
 
         //todo sæt tilbage
 //        ordet = muligeOrd.get(new Random().nextInt(muligeOrd.size()));
-        ordet = "a";
+        ordet = "ab";
 
         System.out.println("Nyt spil - det skjulte ord er: "+ordet);
         opdaterSynligtOrd();

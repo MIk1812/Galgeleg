@@ -32,6 +32,7 @@ public class ActStart extends AppCompatActivity implements View.OnClickListener 
 
         if (v == bPlay){
             i = new Intent(this, ActPlay.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             startActivity(i);
         }
 
