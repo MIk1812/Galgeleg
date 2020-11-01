@@ -5,12 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 public class ActPlay extends AppCompatActivity implements View.OnClickListener {
 
@@ -93,6 +98,7 @@ public class ActPlay extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onStart() {
         super.onStart();
+
         if(logic.erSpilletSlut()){
             logic.startNytSpil();
             updateVisibleWord();

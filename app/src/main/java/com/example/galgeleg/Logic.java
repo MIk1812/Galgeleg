@@ -78,11 +78,7 @@ public class Logic {
         spilletErVundet = false;
         spilletErTabt = false;
         if (muligeOrd.isEmpty()) throw new IllegalStateException("Listen over mulige ord er tom!");
-
-        //todo sæt tilbage
-//        ordet = muligeOrd.get(new Random().nextInt(muligeOrd.size()));
-        ordet = "ab";
-
+        ordet = muligeOrd.get(new Random().nextInt(muligeOrd.size()));
         System.out.println("Nyt spil - det skjulte ord er: "+ordet);
         opdaterSynligtOrd();
     }
@@ -211,7 +207,4 @@ public class Logic {
         startNytSpil();
     }
 
-    public static void main(String[] args) throws Exception {
-        new Logic().hentOrdFraRegneark("2");
-    }
 }
