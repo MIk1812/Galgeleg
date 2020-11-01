@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class ActStart extends AppCompatActivity implements View.OnClickListener {
 
@@ -23,6 +24,17 @@ public class ActStart extends AppCompatActivity implements View.OnClickListener 
         bPlay.setOnClickListener(this);
         bHelp.setOnClickListener(this);
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        Logic logic = Logic.getInstance();
+        if(!logic.erSpilletSlut() && logic.getBrugteBogstaver().size() > 0){
+            Button b = (Button) findViewById(R.id.button1);
+            b.setText("Forsæt spil");
+        }
     }
 
     @Override

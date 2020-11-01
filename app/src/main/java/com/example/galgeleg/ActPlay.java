@@ -10,21 +10,22 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class ActPlay extends AppCompatActivity implements View.OnClickListener {
 
     Button a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,ae,oe,aa;
-    String alphabet[] = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","ae","oe","aa"};
+    String alphabet[] = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","æ","ø","å"};
     int images[] = {R.drawable.galge, R.drawable.forkert1, R.drawable.forkert2, R.drawable.forkert3, R.drawable.forkert4, R.drawable.forkert5, R.drawable.forkert6};
     Button buttons[];
-    Logic logic = new Logic();
+    Logic logic = Logic.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_play);
 
-        updateVisibleWord();
-
+        System.out.println("onCreate");
         a = findViewById(R.id.a);
         b = findViewById(R.id.b);
         c = findViewById(R.id.c);
@@ -90,12 +91,22 @@ public class ActPlay extends AppCompatActivity implements View.OnClickListener {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        if(logic.erSpilletSlut()){
+            logic.startNytSpil();
+            updateVisibleWord();
+        } else
+            updateUI();
+    }
+
+    @Override
     public void onClick(View v) {
 
-        for(int w = 0; w < buttons.length; w++) {
-            if(v == buttons[w]) {
-                logic.gætBogstav(alphabet[w]);
-                updateButton(buttons[w]);
+        for(int i = 0; i < buttons.length; i++) {
+            if(v == buttons[i]) {
+                logic.gætBogstav(alphabet[i]);
+                buttons[i].setBackgroundColor(Color.parseColor("#303030"));
                 updateVisibleWord();
                 break;
             }
@@ -113,17 +124,22 @@ public class ActPlay extends AppCompatActivity implements View.OnClickListener {
         visibleWord.setText(logic.getSynligtOrd());
     }
 
-    private void updateButton(Button b){
-        if(logic.erSidsteBogstavKorrekt())
-            b.setBackgroundColor(Color.parseColor("#47c236"));
-        else
-            b.setBackgroundColor(Color.parseColor("#db413b"));
-    }
-
     private void updateImage(){
         int failedGuesses = logic.getAntalForkerteBogstaver();
         ImageView image = (ImageView) findViewById(R.id.imageView);
         image.setImageResource(images[failedGuesses]);
+    }
+
+    private void updateUI() {
+        updateVisibleWord();
+        updateImage();
+
+        ArrayList<String> usedWords = logic.getBrugteBogstaver();
+        for (int i = 0; i < alphabet.length; i++) {
+            if(usedWords.contains(alphabet[i]))
+                buttons[i].setBackgroundColor(Color.parseColor("#303030"));
+        }
+
     }
 
 }

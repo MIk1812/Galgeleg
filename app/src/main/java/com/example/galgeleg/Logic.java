@@ -10,6 +10,9 @@ import java.util.HashSet;
 import java.util.Random;
 
 public class Logic {
+
+    private static Logic instance = new Logic();
+
     /** AHT afprøvning er muligeOrd synlig på pakkeniveau */
     ArrayList<String> muligeOrd = new ArrayList<String>();
     private String ordet;
@@ -20,7 +23,7 @@ public class Logic {
     private boolean spilletErVundet;
     private boolean spilletErTabt;
 
-    public Logic() {
+    private Logic() {
         muligeOrd.add("bil");
         muligeOrd.add("computer");
         muligeOrd.add("programmering");
@@ -33,6 +36,9 @@ public class Logic {
         startNytSpil();
     }
 
+    public static Logic getInstance(){
+        return instance;
+    }
 
     public ArrayList<String> getBrugteBogstaver() {
         return brugteBogstaver;
