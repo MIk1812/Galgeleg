@@ -38,7 +38,7 @@ public class ActHighScores extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        Collections.sort(scores);
+        Collections.sort(scores, new HighScoreComparator());
         HighScoreAdapter adapter = new HighScoreAdapter(this, R.layout.high_score_list, scores);
 
         ListView listView = new ListView(this);

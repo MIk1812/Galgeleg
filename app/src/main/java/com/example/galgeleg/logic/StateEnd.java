@@ -12,7 +12,6 @@ public class StateEnd extends StatesAdapter{
         ctx.spilletErTabt = false;
         if (ctx.muligeOrd.isEmpty()) throw new IllegalStateException("Listen over mulige ord er tom!");
         ctx.ordet = ctx.muligeOrd.get(new Random().nextInt(ctx.muligeOrd.size()));
-        System.out.println("Nyt spil - det skjulte ord er: "+ctx.ordet);
         ctx.opdaterSynligtOrd();
         ctx.changeState(new StatePlaying());
     }
