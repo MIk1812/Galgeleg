@@ -9,11 +9,13 @@ import java.util.Random;
 
 public class Context{
 
+    //file where highscores are saved
     public static final String HIGHSCORES = "highscores.txt";
 
     private static Context instance = new Context();
     private States state;
 
+    //Protected so that the states can access them without setters and getters
     protected ArrayList<String> muligeOrd = new ArrayList<String>();
     protected String ordet;
     protected ArrayList<String> brugteBogstaver = new ArrayList<String>();

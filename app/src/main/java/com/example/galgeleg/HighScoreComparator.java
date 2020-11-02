@@ -3,6 +3,8 @@ package com.example.galgeleg;
 import java.util.Comparator;
 
 public class HighScoreComparator implements Comparator<String> {
+
+    //Highscore are formattet like "10, Mike", this ensure they are sorted correctly
     @Override
     public int compare(String o1, String o2) {
         int s1 = Integer.parseInt(o1.split(", ")[0]);

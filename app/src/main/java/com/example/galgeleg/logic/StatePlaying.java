@@ -24,6 +24,7 @@ public class StatePlaying extends StatesAdapter{
         }
         ctx.opdaterSynligtOrd();
 
+        //Remeber to change the state of the context
         if(ctx.erSpilletSlut())
             ctx.changeState(new StateEnd());
     }

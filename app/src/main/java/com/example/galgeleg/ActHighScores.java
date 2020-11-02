@@ -29,6 +29,7 @@ public class ActHighScores extends AppCompatActivity {
             InputStreamReader isr = new InputStreamReader(fis);
             BufferedReader br = new BufferedReader(isr);
 
+            //Loop through lines from file and collect scores in String Array
             String txt;
             while((txt = br.readLine()) != null)
                 scores.add(txt);
@@ -38,9 +39,13 @@ public class ActHighScores extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        //Sort the String Array using custom comparator
         Collections.sort(scores, new HighScoreComparator());
+
+        //Custom adapter has also been implemented, to show custom High Score list
         HighScoreAdapter adapter = new HighScoreAdapter(this, R.layout.high_score_list, scores);
 
+        //Create and set the listview's adapter and display it
         ListView listView = new ListView(this);
         listView.setAdapter(adapter);
         setContentView(listView);

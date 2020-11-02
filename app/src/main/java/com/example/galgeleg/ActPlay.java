@@ -27,6 +27,7 @@ public class ActPlay extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_play);
 
+        //Set onClickListeners
         System.out.println("onCreate");
         a = findViewById(R.id.a);
         b = findViewById(R.id.b);
@@ -99,14 +100,18 @@ public class ActPlay extends AppCompatActivity implements View.OnClickListener {
             ctx.startGame();
             updateVisibleWord();
         } else
+            //The makes sure screenrotations works and that you can leave and come back to the same game
             updateUI();
     }
 
     @Override
     public void onClick(View v) {
 
+        //Loop through and find letter pressed
         for(int i = 0; i < buttons.length; i++) {
             if(v == buttons[i]) {
+
+                //update the context and the UI
                 ctx.guessLetter(alphabet[i]);
                 buttons[i].setBackgroundColor(Color.parseColor("#303030"));
                 updateVisibleWord();
@@ -114,9 +119,12 @@ public class ActPlay extends AppCompatActivity implements View.OnClickListener {
             }
         }
 
+        //Check if game is over
         if(ctx.erSpilletSlut()){
             Intent i = new Intent(this, ActEnd.class);
             startActivity(i);
+
+            //Finish the activity, since we don't want it on the stack
             this.finish();
         } else
             updateImage();
@@ -128,15 +136,18 @@ public class ActPlay extends AppCompatActivity implements View.OnClickListener {
     }
 
     private void updateImage(){
+        //From "getAntalForkerteBogstaver" we can conclude what image needs to be shown
         int failedGuesses = ctx.getAntalForkerteBogstaver();
         ImageView image = (ImageView) findViewById(R.id.imageView);
         image.setImageResource(images[failedGuesses]);
     }
 
+    //The makes sure screenrotations works and that you can leave and come back to the same game
     private void updateUI() {
         updateVisibleWord();
         updateImage();
 
+        //Loop through buttons and find which once need to be marked as already pressed
         ArrayList<String> usedWords = ctx.getBrugteBogstaver();
         for (int i = 0; i < alphabet.length; i++) {
             if(usedWords.contains(alphabet[i]))

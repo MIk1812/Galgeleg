@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.galgeleg.logic.Context;
-import com.example.galgeleg.logic.Logic;
 
 public class ActStart extends AppCompatActivity implements View.OnClickListener {
 
@@ -16,10 +15,10 @@ public class ActStart extends AppCompatActivity implements View.OnClickListener 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_start);
 
+        //Set onClickListeners
         bPlay = (Button) findViewById(R.id.button1);
         bHighScores = (Button) findViewById(R.id.button2);
 
@@ -32,7 +31,10 @@ public class ActStart extends AppCompatActivity implements View.OnClickListener 
         super.onStart();
 
         Context ctx = Context.getInstance();
+
+        //If the game is currently active
         if(!ctx.erSpilletSlut() && ctx.getBrugteBogstaver().size() > 0){
+            //We would like to display "continue game" as supposed to "start game"
             Button b = (Button) findViewById(R.id.button1);
             b.setText("Forsæt spil");
         }

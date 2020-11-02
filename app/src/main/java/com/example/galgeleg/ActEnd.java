@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.galgeleg.logic.Context;
-import com.example.galgeleg.logic.Logic;
 
 public class ActEnd extends AppCompatActivity implements View.OnClickListener {
 
@@ -55,12 +54,16 @@ public class ActEnd extends AppCompatActivity implements View.OnClickListener {
         if(v == b){
             Intent i = new Intent(this, ActStart.class);
             startActivity(i);
+
+            //Finish the activity, since we don't want it on the stack
             this.finish();
         }
 
         if(v == save){
             Intent i = new Intent(this, ActSave.class);
             startActivity(i);
+
+            //Finish the activity, since we don't want it on the stack
             this.finish();
         }
     }

@@ -17,19 +17,23 @@ public class HighScoreAdapter extends ArrayAdapter<String> {
     private Context mContext;
     private int mResource;
 
+    //Override constructor
     public HighScoreAdapter(@NonNull Context context, int resource, @NonNull ArrayList<String> objects) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;
     }
 
+    //Override getview, which is called every time a new list element is created
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
+        //Inflate the desired layout
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent, false);
 
+        //Input string af formattede like "10, Mike", therefor they are split before insertet
         String line = getItem(position);
         String[] tokens = line.split(", ");
 

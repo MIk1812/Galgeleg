@@ -9,7 +9,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.galgeleg.logic.Context;
-import com.example.galgeleg.logic.Logic;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -31,12 +30,15 @@ public class ActSave extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
 
+        //Get the name typed by the user
         EditText tv = (EditText) findViewById(R.id.input);
         String name = tv.getText().toString();
-        System.out.println(name);
 
+        //Check is anything has been typed
         if(!name.equals("")){
             saveScore(name);
+
+            //Finish the activity, since we don't want it on the stack
             this.finish();
         }else
             Toast.makeText(this, "Indtast navn", Toast.LENGTH_LONG).show();
@@ -48,6 +50,7 @@ public class ActSave extends AppCompatActivity implements View.OnClickListener {
         String score = String.valueOf(ctx.getBrugteBogstaver().size());
         String toSave = score + ", " + name + "\n";
 
+        //Save string like "10, Mike" to the local file highscores.txt
         try {
             FileOutputStream out = openFileOutput(Context.HIGHSCORES, MODE_APPEND);
             out.write(toSave.getBytes());

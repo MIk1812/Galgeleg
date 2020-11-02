@@ -13,6 +13,8 @@ public class StateEnd extends StatesAdapter{
         if (ctx.muligeOrd.isEmpty()) throw new IllegalStateException("Listen over mulige ord er tom!");
         ctx.ordet = ctx.muligeOrd.get(new Random().nextInt(ctx.muligeOrd.size()));
         ctx.opdaterSynligtOrd();
+
+        //Remeber to change the state of the context
         ctx.changeState(new StatePlaying());
     }
 
