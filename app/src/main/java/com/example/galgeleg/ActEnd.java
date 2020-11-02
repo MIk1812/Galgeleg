@@ -12,7 +12,6 @@ public class ActEnd extends AppCompatActivity implements View.OnClickListener {
 
     Button b, save;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +21,6 @@ public class ActEnd extends AppCompatActivity implements View.OnClickListener {
         save = findViewById(R.id.save);
         b.setOnClickListener(this);
         save.setOnClickListener(this);
-
     }
 
     @Override
@@ -40,7 +38,6 @@ public class ActEnd extends AppCompatActivity implements View.OnClickListener {
             Button save = findViewById(R.id.save);
             save.setVisibility(View.GONE);
         }
-
 
         int numberOfGuesses = logic.getBrugteBogstaver().size();
         subtitle.setText("Du brugte " + String.valueOf(numberOfGuesses) + " gæt");
@@ -63,7 +60,5 @@ public class ActEnd extends AppCompatActivity implements View.OnClickListener {
             startActivity(i);
             this.finish();
         }
-
-
     }
 }

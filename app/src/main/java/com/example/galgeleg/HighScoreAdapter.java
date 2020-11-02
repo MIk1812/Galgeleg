@@ -31,7 +31,6 @@ public class HighScoreAdapter extends ArrayAdapter<String> {
         convertView = inflater.inflate(mResource, parent, false);
 
         String line = getItem(position);
-
         String[] tokens = line.split(", ");
 
         TextView name = (TextView) convertView.findViewById(R.id.name);

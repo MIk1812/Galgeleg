@@ -25,7 +25,6 @@ public class ActSave extends AppCompatActivity implements View.OnClickListener {
 
         Button b = (Button) findViewById(R.id.save);
         b.setOnClickListener(this);
-
     }
 
     @Override
@@ -40,7 +39,6 @@ public class ActSave extends AppCompatActivity implements View.OnClickListener {
             this.finish();
         }else
             Toast.makeText(this, "Indtast navn", Toast.LENGTH_LONG).show();
-
     }
 
     //Inspired by: https://codinginflow.com/tutorials/android/write-text-file-to-internal-storage
@@ -58,7 +56,6 @@ public class ActSave extends AppCompatActivity implements View.OnClickListener {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
 }

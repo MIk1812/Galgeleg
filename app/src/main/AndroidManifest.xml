@@ -15,7 +15,6 @@
         <activity android:name=".ActHighScores"></activity>
         <activity android:name=".ActSave" />
         <activity android:name=".ActEnd" />
-        <activity android:name=".ActHelp" />
         <activity android:name=".ActPlay" />
         <activity android:name=".ActStart">
             <intent-filter>

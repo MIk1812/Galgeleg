@@ -45,16 +45,10 @@ public class ActHighScores extends AppCompatActivity {
         }
 
         Collections.sort(scores);
-        System.out.println(scores.toString());
-
         HighScoreAdapter adapter = new HighScoreAdapter(this, R.layout.high_score_list, scores);
 
         ListView listView = new ListView(this);
         listView.setAdapter(adapter);
         setContentView(listView);
-
-
-
-
     }
 }
