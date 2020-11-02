@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.galgeleg.logic.Context;
+import com.example.galgeleg.logic.Logic;
+
 public class ActEnd extends AppCompatActivity implements View.OnClickListener {
 
     Button b, save;
@@ -31,18 +34,18 @@ public class ActEnd extends AppCompatActivity implements View.OnClickListener {
         TextView subtitle = (TextView) findViewById(R.id.subtitle);
         TextView word = (TextView) findViewById(R.id.word);
 
-        Logic logic = Logic.getInstance();
+        Context ctx = Context.getInstance();
 
-        if(logic.erSpilletTabt()){
+        if(ctx.erSpilletTabt()){
             title.setText("Desværre, du tabte");
             Button save = findViewById(R.id.save);
             save.setVisibility(View.GONE);
         }
 
-        int numberOfGuesses = logic.getBrugteBogstaver().size();
+        int numberOfGuesses = ctx.getBrugteBogstaver().size();
         subtitle.setText("Du brugte " + String.valueOf(numberOfGuesses) + " gæt");
 
-        String wordToGuess = logic.getOrdet();
+        String wordToGuess = ctx.getOrdet();
         word.setText(wordToGuess);
     }
 

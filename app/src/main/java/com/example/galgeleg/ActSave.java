@@ -3,12 +3,13 @@ package com.example.galgeleg;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.galgeleg.logic.Context;
+import com.example.galgeleg.logic.Logic;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -43,12 +44,12 @@ public class ActSave extends AppCompatActivity implements View.OnClickListener {
 
     //Inspired by: https://codinginflow.com/tutorials/android/write-text-file-to-internal-storage
     private void saveScore(String name){
-        Logic logic = Logic.getInstance();
-        String score = String.valueOf(logic.getBrugteBogstaver().size());
+        Context ctx = Context.getInstance();
+        String score = String.valueOf(ctx.getBrugteBogstaver().size());
         String toSave = score + ", " + name + "\n";
 
         try {
-            FileOutputStream out = openFileOutput(Logic.HIGHSCORES, MODE_APPEND);
+            FileOutputStream out = openFileOutput(Context.HIGHSCORES, MODE_APPEND);
             out.write(toSave.getBytes());
             Toast.makeText(this, "Gemt", Toast.LENGTH_LONG).show();
         } catch (FileNotFoundException e) {

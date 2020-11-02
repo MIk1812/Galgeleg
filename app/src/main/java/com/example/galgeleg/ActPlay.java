@@ -5,19 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import com.example.galgeleg.logic.Context;
+
 import java.util.ArrayList;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 public class ActPlay extends AppCompatActivity implements View.OnClickListener {
 
@@ -25,7 +20,7 @@ public class ActPlay extends AppCompatActivity implements View.OnClickListener {
     String alphabet[] = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","æ","ø","å"};
     int images[] = {R.drawable.galge, R.drawable.forkert1, R.drawable.forkert2, R.drawable.forkert3, R.drawable.forkert4, R.drawable.forkert5, R.drawable.forkert6};
     Button buttons[];
-    Logic logic = Logic.getInstance();
+    Context ctx = Context.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,8 +95,8 @@ public class ActPlay extends AppCompatActivity implements View.OnClickListener {
     public void onStart() {
         super.onStart();
 
-        if(logic.erSpilletSlut()){
-            logic.startNytSpil();
+        if(ctx.erSpilletSlut()){
+            ctx.startGame();
             updateVisibleWord();
         } else
             updateUI();
@@ -112,14 +107,14 @@ public class ActPlay extends AppCompatActivity implements View.OnClickListener {
 
         for(int i = 0; i < buttons.length; i++) {
             if(v == buttons[i]) {
-                logic.gætBogstav(alphabet[i]);
+                ctx.guessLetter(alphabet[i]);
                 buttons[i].setBackgroundColor(Color.parseColor("#303030"));
                 updateVisibleWord();
                 break;
             }
         }
 
-        if(logic.erSpilletSlut()){
+        if(ctx.erSpilletSlut()){
             Intent i = new Intent(this, ActEnd.class);
             startActivity(i);
             this.finish();
@@ -129,11 +124,11 @@ public class ActPlay extends AppCompatActivity implements View.OnClickListener {
 
     private void updateVisibleWord(){
         TextView visibleWord = findViewById(R.id.visibleWord);
-        visibleWord.setText(logic.getSynligtOrd());
+        visibleWord.setText(ctx.getSynligtOrd());
     }
 
     private void updateImage(){
-        int failedGuesses = logic.getAntalForkerteBogstaver();
+        int failedGuesses = ctx.getAntalForkerteBogstaver();
         ImageView image = (ImageView) findViewById(R.id.imageView);
         image.setImageResource(images[failedGuesses]);
     }
@@ -142,7 +137,7 @@ public class ActPlay extends AppCompatActivity implements View.OnClickListener {
         updateVisibleWord();
         updateImage();
 
-        ArrayList<String> usedWords = logic.getBrugteBogstaver();
+        ArrayList<String> usedWords = ctx.getBrugteBogstaver();
         for (int i = 0; i < alphabet.length; i++) {
             if(usedWords.contains(alphabet[i]))
                 buttons[i].setBackgroundColor(Color.parseColor("#303030"));

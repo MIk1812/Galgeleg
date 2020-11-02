@@ -7,9 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.galgeleg.logic.Context;
+import com.example.galgeleg.logic.Logic;
+
 public class ActStart extends AppCompatActivity implements View.OnClickListener {
 
-    Button bPlay, bHighScores, bHelp;
+    Button bPlay, bHighScores;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,19 +22,17 @@ public class ActStart extends AppCompatActivity implements View.OnClickListener 
 
         bPlay = (Button) findViewById(R.id.button1);
         bHighScores = (Button) findViewById(R.id.button2);
-        bHelp = (Button) findViewById(R.id.button3);
 
         bPlay.setOnClickListener(this);
         bHighScores.setOnClickListener(this);
-        bHelp.setOnClickListener(this);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
-        Logic logic = Logic.getInstance();
-        if(!logic.erSpilletSlut() && logic.getBrugteBogstaver().size() > 0){
+        Context ctx = Context.getInstance();
+        if(!ctx.erSpilletSlut() && ctx.getBrugteBogstaver().size() > 0){
             Button b = (Button) findViewById(R.id.button1);
             b.setText("Forsæt spil");
         }
@@ -49,11 +50,6 @@ public class ActStart extends AppCompatActivity implements View.OnClickListener 
 
         if(v == bHighScores){
             i = new Intent(this, ActHighScores.class);
-            startActivity(i);
-        }
-
-        if(v == bHelp){
-            i = new Intent(this, ActHelp.class);
             startActivity(i);
         }
     }

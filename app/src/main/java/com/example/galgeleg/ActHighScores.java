@@ -1,18 +1,12 @@
 package com.example.galgeleg;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import java.io.BufferedInputStream;
+import com.example.galgeleg.logic.Context;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -31,7 +25,7 @@ public class ActHighScores extends AppCompatActivity {
 
         //Inspired by: https://codinginflow.com/tutorials/android/write-text-file-to-internal-storage
         try {
-            FileInputStream fis = openFileInput(Logic.HIGHSCORES);
+            FileInputStream fis = openFileInput(Context.HIGHSCORES);
             InputStreamReader isr = new InputStreamReader(fis);
             BufferedReader br = new BufferedReader(isr);
 
