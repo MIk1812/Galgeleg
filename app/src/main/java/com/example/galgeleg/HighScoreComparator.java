@@ -11,6 +11,6 @@ public class HighScoreComparator implements Comparator<String> {
         int s2 = Integer.parseInt(o2.split(", ")[0]);
 
         if(s1>s2) return 1;
-        else return 0;
+        else return -1;
     }
 }
