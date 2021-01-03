@@ -44,27 +44,28 @@ public class ActEnd extends AppCompatActivity implements View.OnClickListener {
         int numberOfGuesses = ctx.getBrugteBogstaver().size();
         subtitle.setText("Du brugte " + String.valueOf(numberOfGuesses) + " gæt");
 
-        String wordToGuess = ctx.getOrdet();
+        String wordToGuess = ctx.getSidsteOrd();
         word.setText(wordToGuess);
     }
 
     @Override
     public void onClick(View v) {
 
-        if(v == b){
-            Intent i = new Intent(this, ActStart.class);
-            startActivity(i);
-
-            //Finish the activity, since we don't want it on the stack
-            this.finish();
-        }
+        if(v == b)
+            onBackPressed();
 
         if(v == save){
             Intent i = new Intent(this, ActSave.class);
             startActivity(i);
-
-            //Finish the activity, since we don't want it on the stack
-            this.finish();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        Intent i = new Intent(this, ActStart.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(i);
     }
 }

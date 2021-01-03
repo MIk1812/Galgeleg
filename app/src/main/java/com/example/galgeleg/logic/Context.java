@@ -18,6 +18,7 @@ public class Context{
     //Protected so that the states can access them without setters and getters
     protected ArrayList<String> muligeOrd = new ArrayList<String>();
     protected String ordet;
+    protected String sidsteOrd;
     protected ArrayList<String> brugteBogstaver = new ArrayList<String>();
     protected String synligtOrd;
     protected int antalForkerteBogstaver;
@@ -37,7 +38,6 @@ public class Context{
         muligeOrd.add("tyve");
 
         this.state = new StateEnd();
-        state.startGame(this);
     }
 
     public static Context getInstance(){
@@ -48,9 +48,9 @@ public class Context{
         state.startGame(this);
     }
 
-    public void guessLetter(String bogstav) {
-        state.guessLetter(this, bogstav);
-    }
+    public void guessLetter(String bogstav) { state.guessLetter(this, bogstav); }
+
+    public ArrayList<String> getMuligeOrd() { return muligeOrd; }
 
     protected void changeState(States state){
         this.state = state;
@@ -65,6 +65,14 @@ public class Context{
     public String getOrdet() {
         return ordet;
     }
+
+    public void setOrdet(String ordet) { this.ordet = ordet; }
+
+    public void resetOrdet() { this.ordet = null; }
+
+    public String getSidsteOrd() { return sidsteOrd; }
+
+    public void setSidsteOrd(String sidsteOrd) { this.sidsteOrd = sidsteOrd; }
 
     public int getAntalForkerteBogstaver() {
         return antalForkerteBogstaver;

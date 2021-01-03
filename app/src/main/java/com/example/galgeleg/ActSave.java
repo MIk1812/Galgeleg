@@ -2,6 +2,7 @@ package com.example.galgeleg;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -38,8 +39,10 @@ public class ActSave extends AppCompatActivity implements View.OnClickListener {
         if(!name.equals("")){
             saveScore(name);
 
-            //Finish the activity, since we don't want it on the stack
-            this.finish();
+            Intent i = new Intent(this, ActStart.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
+
         }else
             Toast.makeText(this, "Indtast navn", Toast.LENGTH_LONG).show();
     }

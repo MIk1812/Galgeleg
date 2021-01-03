@@ -100,7 +100,7 @@ public class ActPlay extends AppCompatActivity implements View.OnClickListener {
             ctx.startGame();
             updateVisibleWord();
         } else
-            //The makes sure screenrotations works and that you can leave and come back to the same game
+            //The allows you to leave and come back to the same game
             updateUI();
     }
 
@@ -130,6 +130,15 @@ public class ActPlay extends AppCompatActivity implements View.OnClickListener {
             updateImage();
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        Intent i = new Intent(this, ActStart.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(i);
+    }
+
     private void updateVisibleWord(){
         TextView visibleWord = findViewById(R.id.visibleWord);
         visibleWord.setText(ctx.getSynligtOrd());
@@ -142,7 +151,7 @@ public class ActPlay extends AppCompatActivity implements View.OnClickListener {
         image.setImageResource(images[failedGuesses]);
     }
 
-    //The makes sure screenrotations works and that you can leave and come back to the same game
+    //The allows you to leave and come back to the same game
     private void updateUI() {
         updateVisibleWord();
         updateImage();

@@ -12,6 +12,7 @@ import com.example.galgeleg.logic.Context;
 public class ActStart extends AppCompatActivity implements View.OnClickListener {
 
     Button bPlay, bHighScores;
+    Context ctx = Context.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +31,9 @@ public class ActStart extends AppCompatActivity implements View.OnClickListener 
     protected void onStart() {
         super.onStart();
 
-        Context ctx = Context.getInstance();
-
         //If the game is currently active
-        if(!ctx.erSpilletSlut() && ctx.getBrugteBogstaver().size() > 0){
+        if(!ctx.erSpilletSlut() && ctx.getOrdet() != null){
+
             //We would like to display "continue game" as supposed to "start game"
             Button b = (Button) findViewById(R.id.button1);
             b.setText("Forsæt spil");
@@ -46,8 +46,20 @@ public class ActStart extends AppCompatActivity implements View.OnClickListener 
         Intent i;
 
         if (v == bPlay){
-            i = new Intent(this, ActPlay.class);
-            startActivity(i);
+
+            //If the game is currently active
+            if(!ctx.erSpilletSlut() && ctx.getOrdet() != null) {
+
+                //We got directly to the game
+                i = new Intent(this, ActPlay.class);
+                startActivity(i);
+
+            } else{
+                i = new Intent(this, ActPickWord.class);
+                startActivity(i);
+            }
+
+
         }
 
         if(v == bHighScores){

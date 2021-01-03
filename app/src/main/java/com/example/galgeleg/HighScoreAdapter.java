@@ -33,7 +33,7 @@ public class HighScoreAdapter extends ArrayAdapter<String> {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent, false);
 
-        //Input string af formattede like "10, Mike", therefor they are split before insertet
+        //Input string is formatted like "10, Mike", therefor they are split before inserted
         String line = getItem(position);
         String[] tokens = line.split(", ");
 
