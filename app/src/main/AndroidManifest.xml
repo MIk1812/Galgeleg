@@ -11,8 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ActPickWordList"></activity>
-        <activity android:name=".ActPickWord" />
+        <activity android:name=".ActPickWordList"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ActPickWord"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ActLoading"
             android:screenOrientation="portrait">

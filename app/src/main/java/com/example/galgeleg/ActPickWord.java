@@ -16,7 +16,7 @@ public class ActPickWord extends AppCompatActivity implements View.OnClickListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_pick_word);
+        setContentView(R.layout.act_pickword);
 
         b1 = (Button) findViewById(R.id.button3);
         b2 = (Button) findViewById(R.id.button4);
