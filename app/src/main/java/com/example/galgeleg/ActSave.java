@@ -45,7 +45,7 @@ public class ActSave extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void afterTextChanged(Editable s) {
                 int nChars = input.length();
-                counter.setText(nChars + "/20");
+                counter.setText(nChars + "/10");
             }
         });
 
@@ -60,7 +60,7 @@ public class ActSave extends AppCompatActivity implements View.OnClickListener {
         EditText tv = (EditText) findViewById(R.id.input);
         String name = tv.getText().toString();
 
-        //Check is anything has been typed
+        //Check if anything has been typed
         if(!name.equals("")){
             saveScore(name);
 
@@ -78,7 +78,7 @@ public class ActSave extends AppCompatActivity implements View.OnClickListener {
         String score = String.valueOf(ctx.getBrugteBogstaver().size());
         String toSave = score + ", " + name + "\n";
 
-        //Save string like "10, Mike" to the local file highscores.txt
+        //Saves string like "10, Mike" to the local file highscores.txt
         try {
             FileOutputStream out = openFileOutput(Context.HIGHSCORES, MODE_APPEND);
             out.write(toSave.getBytes());

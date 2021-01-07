@@ -3,6 +3,7 @@ package com.example.galgeleg;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -29,6 +30,8 @@ public class ActEnd extends AppCompatActivity implements View.OnClickListener {
     protected void onStart() {
         super.onStart();
 
+        final MediaPlayer mp;
+
         TextView title = (TextView) findViewById(R.id.title);
         TextView subtitle = (TextView) findViewById(R.id.subtitle);
         TextView word = (TextView) findViewById(R.id.word);
@@ -39,6 +42,12 @@ public class ActEnd extends AppCompatActivity implements View.OnClickListener {
             title.setText("Desværre, du tabte");
             Button save = findViewById(R.id.save);
             save.setVisibility(View.GONE);
+
+            mp = MediaPlayer.create(this, R.raw.loosesound);
+            mp.start();
+        } else {
+            mp = MediaPlayer.create(this, R.raw.winsound);
+            mp.start();
         }
 
         int numberOfGuesses = ctx.getBrugteBogstaver().size();
