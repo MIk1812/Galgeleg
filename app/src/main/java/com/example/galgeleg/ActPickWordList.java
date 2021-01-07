@@ -25,7 +25,7 @@ public class ActPickWordList extends AppCompatActivity implements AdapterView.On
         setContentView(R.layout.act_showlist);
 
         TextView title = findViewById(R.id.listTitle);
-        TextView subtitle = findViewById(R.id.subtitle);
+        TextView subtitle = findViewById(R.id.listSubtitle);
         ListView list = findViewById(R.id.list);
 
         title.setText("Vælg et ord fra listen");
