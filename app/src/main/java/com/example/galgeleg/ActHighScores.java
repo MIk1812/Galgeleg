@@ -3,7 +3,9 @@ package com.example.galgeleg;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.galgeleg.logic.Context;
 
@@ -20,10 +22,17 @@ public class ActHighScores extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.act_showlist);
 
-        ArrayList<String> scores = new ArrayList<>();
+        TextView title = findViewById(R.id.listTitle);
+        TextView subtitle = findViewById(R.id.listSubtitle);
+        ListView scoresList = (ListView) findViewById(R.id.list);
 
+        title.setText("High Scores");
+
+        //Load the scores
         //Inspired by: https://codinginflow.com/tutorials/android/write-text-file-to-internal-storage
+        ArrayList<String> scores = new ArrayList<>();
         try {
             FileInputStream fis = openFileInput(Context.HIGHSCORES);
             InputStreamReader isr = new InputStreamReader(fis);
@@ -39,15 +48,21 @@ public class ActHighScores extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        //Sort the String Array using custom comparator
-        Collections.sort(scores, new HighScoreComparator());
+        //If there aren't any highscores to show
+        if(scores.size() == 0){
+            subtitle.setText("Ingen high scores endnu");
+        } else{
+            subtitle.setVisibility(View.GONE);
 
-        //Custom adapter has also been implemented, to show custom High Score list
-        HighScoreAdapter adapter = new HighScoreAdapter(this, R.layout.high_score_list, scores);
+            //Sort the String Array using custom comparator
+            Collections.sort(scores, new HighScoreComparator());
 
-        //Create and set the listview's adapter and display it
-        ListView listView = new ListView(this);
-        listView.setAdapter(adapter);
-        setContentView(listView);
+            //Custom adapter has also been implemented, to show custom High Score list
+            HighScoreAdapter adapter = new HighScoreAdapter(this, R.layout.high_score_list, scores);
+
+            //Set the listview's adapter and display it
+            scoresList.setAdapter(adapter);
+        }
+
     }
 }

@@ -31,13 +31,14 @@ public class ActStart extends AppCompatActivity implements View.OnClickListener 
     protected void onStart() {
         super.onStart();
 
+        Button b = (Button) findViewById(R.id.button1);
+
         //If the game is currently active
         if(!ctx.erSpilletSlut() && ctx.getOrdet() != null){
-
             //We would like to display "continue game" as supposed to "start game"
-            Button b = (Button) findViewById(R.id.button1);
             b.setText("Forsæt spil");
-        }
+        } else
+            b.setText("Nyt spil");
     }
 
     @Override
@@ -50,7 +51,7 @@ public class ActStart extends AppCompatActivity implements View.OnClickListener 
             //If the game is currently active
             if(!ctx.erSpilletSlut() && ctx.getOrdet() != null) {
 
-                //We got directly to the game
+                //We go directly to the game
                 i = new Intent(this, ActPlay.class);
                 startActivity(i);
 
@@ -58,8 +59,6 @@ public class ActStart extends AppCompatActivity implements View.OnClickListener 
                 i = new Intent(this, ActPickWord.class);
                 startActivity(i);
             }
-
-
         }
 
         if(v == bHighScores){

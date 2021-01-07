@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.galgeleg.logic.Context;
@@ -24,8 +27,30 @@ public class ActSave extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_save);
 
-        Button b = (Button) findViewById(R.id.save);
+        b = (Button) findViewById(R.id.save);
         b.setOnClickListener(this);
+
+        TextView counter = (TextView) findViewById(R.id.counter);
+        EditText input = (EditText) findViewById(R.id.input);
+
+        //Add a listener that updates the counter every time a new char is entered
+        input.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                int nChars = input.length();
+                counter.setText(nChars + "/20");
+            }
+        });
+
+        counter.setOnClickListener(this);
+
     }
 
     @Override

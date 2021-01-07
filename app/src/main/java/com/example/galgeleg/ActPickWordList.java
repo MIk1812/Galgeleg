@@ -5,10 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.galgeleg.logic.Context;
 
@@ -22,12 +22,18 @@ public class ActPickWordList extends AppCompatActivity implements AdapterView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_pick_word_list);
+        setContentView(R.layout.act_showlist);
+
+        TextView title = findViewById(R.id.listTitle);
+        TextView subtitle = findViewById(R.id.subtitle);
+        ListView list = findViewById(R.id.list);
+
+        title.setText("Vælg et ord fra listen");
+        subtitle.setVisibility(View.GONE);
 
          words = ctx.getMuligeOrd();
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, android.R.id.text1, words);
-        ListView list = findViewById(R.id.wordListView);
         list.setAdapter(adapter);
         list.setOnItemClickListener(this);
     }

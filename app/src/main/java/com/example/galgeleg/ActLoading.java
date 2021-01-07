@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import com.example.galgeleg.logic.Context;
 
-public class Loading extends AppCompatActivity {
+public class ActLoading extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

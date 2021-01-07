@@ -14,7 +14,7 @@
         <activity android:name=".ActPickWordList"></activity>
         <activity android:name=".ActPickWord" />
         <activity
-            android:name=".Loading"
+            android:name=".ActLoading"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
