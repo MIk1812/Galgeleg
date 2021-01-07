@@ -36,7 +36,7 @@ public class ActStart extends AppCompatActivity implements View.OnClickListener 
         //If the game is currently active
         if(!ctx.erSpilletSlut() && ctx.getOrdet() != null){
             //We would like to display "continue game" as supposed to "start game"
-            b.setText("Forsæt spil");
+            b.setText("Fortsæt spil");
         } else
             b.setText("Nyt spil");
     }
