@@ -57,7 +57,7 @@ public class ActHighScores extends AppCompatActivity {
             //Sort the String Array using custom comparator
             Collections.sort(scores, new HighScoreComparator());
 
-            //Custom adapter has also been implemented, to show custom High Score list
+            //Custom adapter has been implemented to show custom High Score list
             HighScoreAdapter adapter = new HighScoreAdapter(this, R.layout.high_scorelist, scores);
 
             //Set the listview's adapter and display it

@@ -18,12 +18,11 @@ public class ActPickWord extends AppCompatActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_pickword);
 
+        //Set listeners
         b1 = (Button) findViewById(R.id.button3);
         b2 = (Button) findViewById(R.id.button4);
-
         b1.setOnClickListener(this);
         b2.setOnClickListener(this);
-
     }
 
     @Override

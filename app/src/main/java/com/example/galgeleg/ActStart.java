@@ -53,12 +53,11 @@ public class ActStart extends AppCompatActivity implements View.OnClickListener 
 
                 //We go directly to the game
                 i = new Intent(this, ActPlay.class);
-                startActivity(i);
 
             } else{
                 i = new Intent(this, ActPickWord.class);
-                startActivity(i);
             }
+            startActivity(i);
         }
 
         if(v == bHighScores){

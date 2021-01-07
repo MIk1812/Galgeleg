@@ -37,9 +37,9 @@ public class HighScoreAdapter extends ArrayAdapter<String> {
         String line = getItem(position);
         String[] tokens = line.split(", ");
 
+        //Update views
         TextView name = (TextView) convertView.findViewById(R.id.name);
         TextView points = (TextView) convertView.findViewById(R.id.points);
-
         name.setText(tokens[1]);
         points.setText(tokens[0]);
 

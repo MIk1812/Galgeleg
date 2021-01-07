@@ -33,6 +33,7 @@ public class ActPickWordList extends AppCompatActivity implements AdapterView.On
 
          words = ctx.getMuligeOrd();
 
+         //Just use a standard adapter to show the words
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, android.R.id.text1, words);
         list.setAdapter(adapter);
         list.setOnItemClickListener(this);
@@ -41,6 +42,8 @@ public class ActPickWordList extends AppCompatActivity implements AdapterView.On
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        //Save the picked word in the context
         ctx.setOrdet(words.get(position));
         ctx.startGame();
         Intent i = new Intent(this, ActPlay.class);

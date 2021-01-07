@@ -20,6 +20,7 @@ public class ActEnd extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_end);
 
+        //Set listeners
         b = findViewById(R.id.button);
         save = findViewById(R.id.save);
         b.setOnClickListener(this);
@@ -31,24 +32,24 @@ public class ActEnd extends AppCompatActivity implements View.OnClickListener {
         super.onStart();
 
         final MediaPlayer mp;
-
         TextView title = (TextView) findViewById(R.id.title);
         TextView subtitle = (TextView) findViewById(R.id.subtitle);
         TextView word = (TextView) findViewById(R.id.word);
 
         Context ctx = Context.getInstance();
 
+        //Show correct text depending on if the game was lost or won
         if(ctx.erSpilletTabt()){
             title.setText("Desværre, du tabte");
             Button save = findViewById(R.id.save);
             save.setVisibility(View.GONE);
 
             mp = MediaPlayer.create(this, R.raw.loosesound);
-            mp.start();
         } else {
             mp = MediaPlayer.create(this, R.raw.winsound);
-            mp.start();
         }
+
+        mp.start();
 
         int numberOfGuesses = ctx.getBrugteBogstaver().size();
         subtitle.setText("Du brugte " + String.valueOf(numberOfGuesses) + " gæt");

@@ -50,7 +50,6 @@ public class ActSave extends AppCompatActivity implements View.OnClickListener {
         });
 
         counter.setOnClickListener(this);
-
     }
 
     @Override
@@ -78,7 +77,7 @@ public class ActSave extends AppCompatActivity implements View.OnClickListener {
         String score = String.valueOf(ctx.getBrugteBogstaver().size());
         String toSave = score + ", " + name + "\n";
 
-        //Saves string like "10, Mike" to the local file highscores.txt
+        //Save string like "10, Mike" to the local file highscores.txt
         try {
             FileOutputStream out = openFileOutput(Context.HIGHSCORES, MODE_APPEND);
             out.write(toSave.getBytes());
